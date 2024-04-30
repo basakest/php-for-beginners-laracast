@@ -1,18 +1,11 @@
 <?php
 
 require 'functions.php';
+require 'Database.php';
 // require 'route.php';
 
-$dsn = 'mysql:dbname=myapp;host=127.0.0.1';
-$user = 'root';
-$password = '';
-$pdo = new PDO($dsn, $user, $password);
+$db = new Database();
+$posts = $db->query('SELECT * FROM post')->fetchAll(PDO::FETCH_ASSOC);
+$post = $db->query('SELECT * FROM post WHERE id = 1')->fetch(PDO::FETCH_ASSOC);
 
-$statement = $pdo->prepare('SELECT * FROM post');
-$statement->execute();
-$res = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($res as $post) {
-    echo '<li>' . $post['title'] . '</li>';
-}
-
+dd(['post' => $post, 'posts' => $posts]);
