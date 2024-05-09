@@ -5,13 +5,9 @@ $databaseConfig = (require 'config.php')['database'];
 $db = new Database($databaseConfig);
 $id = $_GET['id'];
 $currentUserId = 1;
-$note = $db->query('SELECT * FROM notes WHERE `id` = :id', ['id' => $id])->fetch();
-if (!$note) {
-    abort();
-}
-if ($currentUserId !== $note['user_id']) {
-    abort(Response::FORBIDDEN);
-}
+$note = $db->query('SELECT * FROM notes WHERE `id` = :id', ['id' => $id])->findOrFail();
+
+authorize($currentUserId === $note['user_id']);
 // dd($notes);
 // dd($db);
 require 'views/note.view.php';
