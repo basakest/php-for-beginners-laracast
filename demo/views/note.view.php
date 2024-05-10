@@ -9,7 +9,7 @@
             <a href="/notes" class="text-blue-500 underline">go back...</a>
         </p>
         <p><?= /** @var array $note */
-            $note['body'] ?></p>
+            htmlspecialchars($note['body']) ?></p>
     </div>
 </main>
 <?php require 'partials/footer.php' ?>
