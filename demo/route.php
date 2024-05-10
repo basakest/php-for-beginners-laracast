@@ -2,14 +2,7 @@
 
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
-$routes = [
-    '/'        => 'controllers/index.php',
-    '/about'   => 'controllers/about.php',
-    '/contact' => 'controllers/contact.php',
-    '/mission' => 'controllers/mission.php',
-    '/notes'   => 'controllers/notes.php',
-    '/note'    => 'controllers/note.php',
-];
+$routes = require 'routes.php';
 
 function abort(int $code = 404): void
 {
