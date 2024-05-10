@@ -1,14 +1,13 @@
 <?php
 
+require 'Validator.php';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $databaseConfig = (require 'config.php')['database'];
     $db = new Database($databaseConfig);
     $errors = [];
-    if (strlen($_POST['body']) == 0) {
-        $errors['body'] = 'Note body is required';
-    }
-    if (strlen($_POST['body']) > 1000) {
-        $errors['body'] = 'Note body can not be more than 1,000 characters';
+    if (!Validator::string($_POST['body'], 1, 1000)) {
+        $errors['body'] = 'A body of no more than 1,000 characters is required.';
     }
     if (empty($errors)) {
         $db->query('INSERT INTO `notes` (`body`, `user_id`) VALUES (:body, :user_id)', [
