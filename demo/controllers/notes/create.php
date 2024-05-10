@@ -16,5 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         ]);
     }
 }
+unset($_POST['body']);
 $heading = 'Create Note';
-require 'views/note-create.view.php';
+require 'views/notes/create.view.php';

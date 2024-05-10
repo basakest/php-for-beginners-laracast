@@ -10,4 +10,4 @@ $note = $db->query('SELECT * FROM notes WHERE `id` = :id', ['id' => $id])->findO
 authorize($currentUserId === $note['user_id']);
 // dd($notes);
 // dd($db);
-require 'views/note.view.php';
+require 'views/notes/show.view.php';
