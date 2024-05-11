@@ -7,7 +7,7 @@ $routes = require base_path('routes.php');
 function abort(int $code = 404): void
 {
     http_response_code($code);
-    view("{$code}.php");
+    require base_path("views/{$code}.php");
     die();
 }
 

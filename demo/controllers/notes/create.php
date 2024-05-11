@@ -1,6 +1,7 @@
 <?php
 
-// require base_path('Validator.php');
+use Core\Database;
+use Core\Validator;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $databaseConfig = (require base_path('config.php'))['database'];
