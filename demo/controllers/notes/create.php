@@ -1,9 +1,9 @@
 <?php
 
-require 'Validator.php';
+// require base_path('Validator.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $databaseConfig = (require 'config.php')['database'];
+    $databaseConfig = (require base_path('config.php'))['database'];
     $db = new Database($databaseConfig);
     $errors = [];
     if (!Validator::string($_POST['body'], 1, 1000)) {
@@ -17,5 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 unset($_POST['body']);
-$heading = 'Create Note';
-require 'views/notes/create.view.php';
+
+view('notes/create.view.php', [
+    'heading' => 'Create Note',
+    'errors'  => $errors ?? [],
+]);

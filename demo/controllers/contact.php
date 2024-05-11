@@ -1,4 +1,3 @@
 <?php
 
-$heading = 'Contact Us';
-require 'views/contract.view.php';
+view('contract.view.php', ['heading' => 'Contact Us']);

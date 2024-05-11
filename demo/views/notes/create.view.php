@@ -1,6 +1,7 @@
-<?php require 'views/partials/header.php'; ?>
-<?php require 'views/partials/nav.php'; ?>
-<?php require 'views/partials/banner.php'; ?>
+<!--在 .views.php 文件中, 用 view 方法会导致 banner.php 中获取不到 $heading 变量-->
+<?php require base_path('views/partials/header.php'); ?>
+<?php require base_path('views/partials/nav.php'); ?>
+<?php require base_path('views/partials/banner.php'); ?>
 
 <main>
     <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
@@ -33,5 +34,5 @@
         </form>
     </div>
 </main>
-<?php require 'views/partials/footer.php' ?>
+<?php require base_path('views/partials/footer.php') ?>
 

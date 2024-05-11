@@ -1,9 +1,10 @@
 <?php
 
-$heading = 'My Notes';
-$databaseConfig = (require 'config.php')['database'];
+$databaseConfig = (require base_path('config.php'))['database'];
 $db = new Database($databaseConfig);
 $notes = $db->query('SELECT * FROM notes WHERE `user_id` = 1')->get();
-// dd($notes);
-// dd($db);
-require 'views/notes/index.view.php';
+
+view('notes/index.view.php', [
+    'heading' => 'My Notes',
+    'notes'   => $notes,
+]);
