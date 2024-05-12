@@ -1,10 +1,13 @@
 <?php
 
-/** @var Core\Route $router */
-$router->get('/', 'controllers/index.php');
-$router->get('/about', 'controllers/about.php');
-$router->get('/contact', 'controllers/contact.php');
-$router->get('/mission', 'controllers/mission.php');
-$router->get('/notes', 'controllers/notes/index.php');
-$router->get('/note', 'controllers/notes/show.php');
-$router->get('/notes/create', 'controllers/notes/create.php');
+/** @var Core\Route $route */
+$route->get('/', 'controllers/index.php');
+$route->get('/about', 'controllers/about.php');
+$route->get('/contact', 'controllers/contact.php');
+$route->get('/mission', 'controllers/mission.php');
+
+$route->get('/notes', 'controllers/notes/index.php');
+$route->get('/note', 'controllers/notes/show.php');
+$route->post('/note', 'controllers/notes/store.php');
+$route->delete('/note', 'controllers/notes/destroy.php');
+$route->get('/notes/create', 'controllers/notes/create.php');
