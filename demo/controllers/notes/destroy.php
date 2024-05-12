@@ -1,9 +1,9 @@
 <?php
 
+use Core\App;
 use Core\Database;
 
-$databaseConfig = (require base_path('config.php'))['database'];
-$db = new Database($databaseConfig);
+$db = App::resolve(Database::class);
 // permission validate
 $currentUserId = 1;
 $id = $_POST['id'];
