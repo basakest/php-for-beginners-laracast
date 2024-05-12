@@ -22,6 +22,13 @@ function authorize(bool $condition, $code = Response::FORBIDDEN): void
     }
 }
 
+function abort(int $code = 404): void
+{
+    http_response_code($code);
+    require base_path("views/{$code}.php");
+    die();
+}
+
 function base_path(string $path): string
 {
     return BASE_PATH . $path;
