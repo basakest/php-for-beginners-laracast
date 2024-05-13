@@ -16,7 +16,7 @@ if (!Validator::string($password, 7, 255)) {
 }
 
 if (!empty($errors)) {
-    view('registration/create.view.php', [
+    view('session/create.view.php', [
         'errors' => $errors,
     ]);
 }
@@ -27,13 +27,15 @@ $user = $db->query('SELECT * FROM `users` WHERE `email` = :email', [
     'email' => $email,
 ])->find();
 
-if (!$user) {
-    $db->query('INSERT INTO users (`email`, `password`) VALUES (:email, :password)', [
-        'email'    => $email,
-        'password' => password_hash($password, PASSWORD_BCRYPT),
-    ]);
-
-    login(['email' => $email]);
+if ($user) {
+    if (password_verify($password, $user['password'])) {
+        login(['email' => $email]);
+        header('location: /');
+        exit();
+    }
 }
-header('location: /');
-exit;
+
+view('session/create.view.php', [
+    'errors' => ['email' => 'email or password is wrong'],
+]);
+
