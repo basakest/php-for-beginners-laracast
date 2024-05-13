@@ -3,21 +3,16 @@
 use Core\App;
 use Core\Database;
 use Core\Validator;
+use Http\Forms\LoginForm;
 
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-$errors = [];
-if (!Validator::email($email)) {
-    $errors['email'] = 'email format wrong';
-}
-if (!Validator::string($password, 7, 255)) {
-    $errors['password'] = 'password must be between 7 and 255 characters';
-}
-
-if (!empty($errors)) {
+$form = new LoginForm();
+if (!$form->validate($email, $password)) {
     view('session/create.view.php', [
-        'errors' => $errors,
+        'errors' => $form->errors(),
+        'data'   => compact('email', 'password'),
     ]);
 }
 
