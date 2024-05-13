@@ -10,9 +10,9 @@ $route->get('/notes', 'controllers/notes/index.php');
 $route->get('/note', 'controllers/notes/show.php');
 $route->post('/note', 'controllers/notes/store.php');
 $route->delete('/note', 'controllers/notes/destroy.php');
-$route->get('/notes/create', 'controllers/notes/create.php');
+$route->get('/notes/create', 'controllers/notes/create.php')->only('auth');
 $route->get('/notes/edit', 'controllers/notes/edit.php');
 $route->patch('/note', 'controllers/notes/update.php');
 
-$route->get('/register', 'controllers/registration/create.php');
+$route->get('/register', 'controllers/registration/create.php')->only('guest');
 $route->post('/register', 'controllers/registration/store.php');
