@@ -11,5 +11,4 @@ $note = $db->query('SELECT * FROM notes WHERE `id` = :id', ['id' => $id])->findO
 authorize($currentUserId === $note['user_id']);
 
 $db->query('delete from `notes` where `id` = :id', ['id' => $_POST['id']]);
-header('Location: /notes');
-exit();
+redirect('/notes');

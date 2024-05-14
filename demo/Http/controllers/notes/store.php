@@ -15,8 +15,7 @@ if (empty($errors)) {
         'body'    => $_POST['body'],
         'user_id' => 1,
     ]);
-    header('Location: notes');
-    exit();
+    redirect('/notes');
 }
 
 view('notes/create.view.php', [

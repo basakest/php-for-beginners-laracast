@@ -23,8 +23,7 @@ if (empty($errors)) {
         'body' => $_POST['body'],
         'id'   => $note['id'],
     ]);
-    header('Location: notes');
-    exit();
+    redirect('/notes');
 }
 
 view('notes/edit.view.php', [
