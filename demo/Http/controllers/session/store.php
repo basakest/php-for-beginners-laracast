@@ -18,4 +18,5 @@ if ($form->validate($email, $password)) {
 
 // PRG(post, request, get) pattern
 Session::flash('errors', $form->errors());
+Session::flash('old', compact('email'));
 redirect('/login');

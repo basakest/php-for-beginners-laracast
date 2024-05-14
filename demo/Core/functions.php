@@ -46,3 +46,8 @@ function redirect(string $path): void
     header("location: $path");
     exit();
 }
+
+function old(string $key, $default = '')
+{
+    return $_SESSION['_flash']['old'][$key] ?? $default;
+}
