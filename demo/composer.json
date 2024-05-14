@@ -1,0 +1,17 @@
+{
+    "name": "basakest/demo",
+    "type": "project",
+    "authors": [
+        {
+            "name": "basakest",
+            "email": "ab1652759879@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    }
+}

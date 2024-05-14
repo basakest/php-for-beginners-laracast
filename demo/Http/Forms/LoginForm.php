@@ -19,7 +19,10 @@ class LoginForm
         }
     }
 
-    public static function validate(array $attributes)
+    /**
+     * @throws ValidationException
+     */
+    public static function validate(array $attributes): LoginForm
     {
         $instance = new self($attributes);
 
