@@ -2,6 +2,7 @@
 
 use Core\Route;
 use Core\Session;
+use Core\ValidationException;
 
 const BASE_PATH = __DIR__ . '/../';
 
@@ -21,6 +22,13 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 require base_path('routes.php');
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
-$route->route($uri, $method);
+// 统一做表单验证处理
+try {
+    $route->route($uri, $method);
+} catch (ValidationException $exception) {
+    Session::flash('errors', $exception->errors);
+    Session::flash('old', $exception->old);
+    redirect($route->previousUrl());
+}
 
 Session::unflash();
